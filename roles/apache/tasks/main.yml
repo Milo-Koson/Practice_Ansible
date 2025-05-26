@@ -1,0 +1,21 @@
+# SPDX-License-Identifier: MIT-0
+---
+# Tache d'installation d'Apache grace a APT
+- name: "Installation Apache"
+  apt:
+    name: "apache2"
+    state: "present"
+
+# Activation du service Apache
+- name: "Activation service apache"
+  service:
+    name: "apache2"
+    state: "started"
+    enabled: yes
+
+# Appel a un autre fichier de configuration pour installer PHP, uniquement
+# executee si la variable php_install est vraie (faux par defaut)
+
+- name: "Installation des packages PHP"
+  include_tasks: "php-install.yml"
+  when: php_install|default(false)|bool

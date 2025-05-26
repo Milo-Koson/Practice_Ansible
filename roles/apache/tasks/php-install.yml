@@ -1,0 +1,9 @@
+---
+
+# Instalation de PHP et de ses extensions
+- name: "Installation des packages PHP"
+  apt:
+    name: "php,php-mysql,php-xml,php-mbstring,php-gd,php-intl"
+    state: latest
+  changed_when: yes
+  notify: [ "apache restart" ]
